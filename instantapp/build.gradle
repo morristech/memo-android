@@ -1,0 +1,33 @@
+apply plugin: 'com.android.instantapp'
+
+dependencies {
+    implementation project(':app')
+    implementation project(':base')
+}
+
+android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/wade/Developer/repo/Memo/config/signing/debug.keystore')
+        }
+        release {
+            keyAlias 'morristech'
+            keyPassword '8juventus6'
+            storeFile file('/Users/wade/Developer/repo/keystores/mt_dev.jks')
+            storePassword '8juventus6'
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+            jniDebuggable true
+            pseudoLocalesEnabled true
+        }
+        release {
+            minifyEnabled false
+            debuggable false
+            signingConfig signingConfigs.release
+        }
+    }
+}

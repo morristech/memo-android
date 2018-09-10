@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="za.co.morristech.memo.app">
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@drawable/ic_launcher_foreground"
+        android:allowBackup="true"
+        android:fullBackupContent="false">
+
+        <activity android:name="za.co.morristech.memo.app.MainActivity">
+            <intent-filter android:order="1" android:label="@string/filter_view_http_morristech"
+                           android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data
+                    android:host="morristech.co.za"
+                    android:pathPattern="/.*"
+                    android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

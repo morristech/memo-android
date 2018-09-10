@@ -1,0 +1,55 @@
+apply plugin: 'com.android.feature'
+
+android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/wade/Developer/repo/Memo/config/signing/debug.keystore')
+        }
+        release {
+            keyAlias 'morristech'
+            keyPassword '8juventus6'
+            storeFile file('/Users/wade/Developer/repo/keystores/mt_dev.jks')
+            storePassword '8juventus6'
+        }
+    }
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags "-frtti -fexceptions"
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+    buildToolsVersion '28.0.3'
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+            jniDebuggable true
+            pseudoLocalesEnabled true
+        }
+        release {
+            minifyEnabled false
+            debuggable false
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':base')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

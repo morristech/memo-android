@@ -1,0 +1,41 @@
+# Gradle files
+.gradle/
+build/
+/*/build/
+.gradletasknamecache
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+
+# Log Files
+*.log
+
+# Misc
+/navigation
+.DS_Store
+/captures
+**/*.iml
+
+## Directory-based project format:
+.idea/
+.idea/workspace.xml
+.idea/libraries
+.idea/instapk.xml
+instapk.log*
+local.properties
+
+# Built application files
+*.apk
+*.ap_
+*.dex
+*.jks
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild
+# VS-Code
+.vscode/
+.project
+.classpath
+
+# Gradle Profile reports
+reports/

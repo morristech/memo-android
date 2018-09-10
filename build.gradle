@@ -1,0 +1,56 @@
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0'
+        //noinspection DifferentKotlinGradleVersion
+        //classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:' + project.KOTLIN_VERSION
+        //classpath 'com.google.gms:google-services:' + project.GOOGLE_GRADLE_VERSION
+        classpath 'com.google.gms:oss-licenses:0.9.2'
+    }
+}
+// global scoped "ext" help variable
+// see https://sites.google.com/a/android.com/tools/tech-docs/new-build-system/tips
+ext {
+    isDevBuild = project.hasProperty('devBuild').toBoolean()
+}
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        //maven { url "https://maven.fabric.io/public" }
+        maven { url "https://jitpack.io" }
+        //maven { url "https://repo.eclipse.org/content/repositories/paho-releases/" }
+    }
+    /**
+     * Optimize build server performance by allowing disabling of pre-dexing
+     * (See http://tools.android.com/tech-docs/new-build-system/tips#TOC-Improving-Build-Server-performance.)
+     */
+    project.plugins.whenPluginAdded { plugin ->
+        if ("com.android.build.gradle.AppPlugin" == plugin.class.name) {
+            project.android.dexOptions.preDexLibraries = !isDevBuild
+        } else if ("com.android.build.gradle.LibraryPlugin" == plugin.class.name) {
+            project.android.dexOptions.preDexLibraries = !isDevBuild
+        }
+    }
+    // Workaround. See https://code.google.com/p/android/issues/detail?id=64887#c54
+    plugins.withType(JavaPlugin).whenPluginAdded {
+        task copyTestResources(type: Copy) {
+            from "${projectDir}/src/test/resources"
+            into "${buildDir}/classes/test"
+        }
+        processTestResources.dependsOn copyTestResources
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.10'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
