@@ -8,7 +8,10 @@ dependencies {
 android {
     signingConfigs {
         debug {
-            storeFile file('/Users/wade/Developer/repo/Memo/config/signing/debug.keystore')
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('/Users/wade/.android/debug.keystore')
+            storePassword 'android'
         }
         release {
             keyAlias 'morristech'

@@ -1,6 +1,9 @@
 package za.co.morristech.memo.android;
 
+import android.arch.lifecycle.Lifecycle;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,14 +14,21 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -39,11 +49,14 @@ public class MainActivity extends AppCompatActivity {
      */
     private ViewPager viewPager;
 
+    private static FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        firebaseAuth = FirebaseAuth.getInstance();
         Fabric.with(this, new Crashlytics());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -96,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public static class PlaceholderFragment extends Fragment {
 
+        private static final String TAG = "PlaceholderFragment";
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -103,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         public PlaceholderFragment() {
-
+            //Required empty constructor
         }
 
         /**
@@ -127,8 +141,95 @@ public class MainActivity extends AppCompatActivity {
             if (getArguments() != null) {
                 textView.setText(getResources().getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             }
+            Button btnSignIn = (Button) rootView.findViewById(R.id.sign_in_button);
+            btnSignIn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+
+                    if (firebaseAuth != null) {
+
+                        if (firebaseAuth.getCurrentUser() != null) {
+                            firebaseAuth.getCurrentUser().getDisplayName();
+                        } else {
+
+                            String emailAddress = "wade.fbi@gmail.com";
+                            String userPassword = "8juventus6";
+                            performLogin(emailAddress, userPassword);
+                        }
+                    }
+                }
+            });
             return rootView;
         }
+
+        public void updateUI(@NonNull Task<AuthResult> task) {
+
+            final TextView textView = (TextView) getActivity().findViewById(R.id.section_label);
+            if (textView != null) {
+
+                if (task.isSuccessful()) {
+
+                    Log.d(TAG, "createUserWithEmail:success");
+                    final FirebaseUser user = task.getResult().getUser();
+                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+
+                            if (user != null) {
+                                textView.setText(user.getUid());
+                            } else {
+                                textView.setText(R.string.please_login_label);
+                            }
+                        }
+
+                    }, 800);
+                } else {
+
+                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+
+                        @Override
+                        public void run() {
+
+                            textView.setText(R.string.please_login_label);
+                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Authentication failed.", Snackbar.LENGTH_LONG).setAction("OK", null).show();
+                        }
+
+                    });
+                }
+            }
+        }
+
+        private void performLogin(@NonNull String email, @NonNull String password) {
+
+            if (firebaseAuth != null && getActivity() != null && getActivity().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
+
+                firebaseAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                updateUI(task);
+                            }
+                        });
+            }
+        }
+
+        private void registerAccount(@NonNull String email, @NonNull String password) {
+
+            if (firebaseAuth != null && getActivity() != null && getActivity().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
+
+                firebaseAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                updateUI(task);
+                            }
+                        });
+            }
+        }
+
     }
 
     /**

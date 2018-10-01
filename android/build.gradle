@@ -2,8 +2,23 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion Integer.parseInt(rootProject.COMPILE_SDK)
-    buildToolsVersion rootProject.BUILD_TOOLS_VERSION
+    compileSdkVersion Integer.parseInt(project.COMPILE_SDK)
+    buildToolsVersion project.BUILD_TOOLS_VERSION
+
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('/Users/wade/.android/debug.keystore')
+            storePassword 'android'
+        }
+        release {
+            keyAlias 'morristech'
+            keyPassword '8juventus6'
+            storeFile file('/Users/wade/Developer/repo/keystores/mt_dev.jks')
+            storePassword '8juventus6'
+        }
+    }
 
     defaultConfig {
         applicationId "za.co.morristech.memo.android"
@@ -15,14 +30,6 @@ android {
         resConfigs "en"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    signingConfigs {
-        release {
-            keyAlias 'morristech'
-            keyPassword '8juventus6'
-            storeFile file('/Users/wade/Developer/repo/keystores/mt_dev.jks')
-            storePassword '8juventus6'
-        }
-    }
     buildTypes {
         release {
             minifyEnabled false
@@ -30,7 +37,9 @@ android {
             signingConfig signingConfigs.release
         }
     }
-
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -44,6 +53,10 @@ dependencies {
     //======================= Firebase Dependencies ======================
     implementation 'com.google.firebase:firebase-core:' + project.FIREBASE_CORE_VERSION
     implementation 'com.google.firebase:firebase-auth:' + project.FIREBASE_CORE_VERSION
+    implementation ('com.google.android.gms:play-services-auth:16.0.0', {
+        force = true
+    })
+    //implementation 'com.firebaseui:firebase-ui-auth:4.1.0'
     //======================= Thirparty Dependencies ======================
     implementation ('com.crashlytics.sdk.android:crashlytics:2.9.5', {
         transitive = true

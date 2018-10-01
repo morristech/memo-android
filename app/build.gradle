@@ -4,7 +4,10 @@ apply plugin: 'io.fabric'
 android {
     signingConfigs {
         debug {
-            storeFile file('/Users/wade/Developer/repo/Memo/config/signing/debug.keystore')
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('/Users/wade/.android/debug.keystore')
+            storePassword 'android'
         }
         release {
             keyAlias 'morristech'
@@ -13,7 +16,8 @@ android {
             storePassword '8juventus6'
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion Integer.parseInt(project.COMPILE_SDK)
+    buildToolsVersion project.BUILD_TOOLS_VERSION
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 28
@@ -31,7 +35,6 @@ android {
             path "CMakeLists.txt"
         }
     }
-    buildToolsVersion project.BUILD_TOOLS_VERSION
     buildTypes {
         debug {
             minifyEnabled false
