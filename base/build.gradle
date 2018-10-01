@@ -64,7 +64,9 @@ dependencies {
     api 'com.google.firebase:firebase-core:' + project.FIREBASE_CORE_VERSION
     api 'com.google.firebase:firebase-auth:' + project.FIREBASE_CORE_VERSION
     //======================= Thirparty Dependencies ======================
-    api 'com.crashlytics.sdk.android:crashlytics:2.9.5'
+    api ('com.crashlytics.sdk.android:crashlytics:2.9.5', {
+        transitive = true
+    })
     //======================= Module Dependencies ======================
     application project(':app')
     feature project(':app')

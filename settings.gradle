@@ -1,1 +1,1 @@
-include ':app', ':app', ':base', ':instantapp'
+include ':app', ':app', ':base', ':instantapp', ':android'
