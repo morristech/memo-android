@@ -23,6 +23,7 @@ android {
             debuggable true
             jniDebuggable true
             pseudoLocalesEnabled true
+            signingConfig signingConfigs.debug
         }
         release {
             minifyEnabled false

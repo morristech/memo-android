@@ -2,11 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="za.co.morristech.memo.app">
 
-    <application
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@drawable/ic_launcher_foreground"
-        android:allowBackup="true"
-        android:fullBackupContent="false">
+    <application >
 
         <activity android:name="za.co.morristech.memo.app.MainActivity">
             <intent-filter android:order="1" android:label="@string/filter_view_http_morristech"
@@ -26,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

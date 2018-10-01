@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="za.co.morristech.memo">
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
         <meta-data
             android:name="aia-compat-api-min-version"
             android:value="1"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="0a023b1a6502b7844820451d23b284f851338dbf"
+            />
+
     </application>
 
 </manifest>
