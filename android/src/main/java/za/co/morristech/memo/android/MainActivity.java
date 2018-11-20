@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
 
                             textView.setText(R.string.please_login_label);
-                            startActivity(new Intent(MainActivity.this, FirebaseUIActivity.class));
+                            startActivity(new Intent(getActivity(), FirebaseUIActivity.class));
                             //Snackbar.make(getActivity().findViewById(android.R.id.content), "Authentication failed.", Snackbar.LENGTH_LONG).setAction("OK", null).show();
                         }
 
