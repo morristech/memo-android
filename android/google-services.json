@@ -8,66 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:314620991128:android:5dc0efc66956016d",
-        "android_client_info": {
-          "package_name": "za.co.morristech.memo"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "314620991128-rtrpn3q5loanoddsotrdnmm78kp418ih.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "za.co.morristech.memo",
-            "certificate_hash": "8825624c0691e75fda2426ad024fa1721c10cbea"
-          }
-        },
-        {
-          "client_id": "314620991128-8ctn1bj8ipo35husuv656rc1niqt2i3a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "za.co.morristech.memo",
-            "certificate_hash": "fdb8754aa13f574db7f5b8d787c4b0ebaa0a9f1d"
-          }
-        },
-        {
-          "client_id": "314620991128-frmrnr9kjj87fqb1mf865mmojr58t7oh.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "za.co.morristech.memo",
-            "certificate_hash": "d209eb8cbdca0b27eccd5a68b76376df51e35002"
-          }
-        },
-        {
-          "client_id": "314620991128-ko9qndgv7a5npm0guc9ltsebhkitf5i2.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAT1OLEQmZDErUwmM6iP5qSfLVjHZbDt-0"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "314620991128-ko9qndgv7a5npm0guc9ltsebhkitf5i2.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:314620991128:android:340e12c058163ede",
         "android_client_info": {
           "package_name": "za.co.morristech.memo.android"
@@ -80,6 +20,14 @@
           "android_info": {
             "package_name": "za.co.morristech.memo.android",
             "certificate_hash": "fdb8754aa13f574db7f5b8d787c4b0ebaa0a9f1d"
+          }
+        },
+        {
+          "client_id": "314620991128-1pohcdlqs7jqhrt1salm9c1h94rrag2b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "za.co.morristech.memo.android",
+            "certificate_hash": "8825624c0691e75fda2426ad024fa1721c10cbea"
           }
         },
         {

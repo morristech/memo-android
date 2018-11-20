@@ -24,6 +24,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".java.FirebaseUIActivity"
+            android:label="@string/label_firebase_ui" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="0a023b1a6502b7844820451d23b284f851338dbf"/>

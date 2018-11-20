@@ -1,6 +1,7 @@
 package za.co.morristech.memo.android;
 
 import android.arch.lifecycle.Lifecycle;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -83,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            final TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             if (getArguments() != null) {
                 textView.setText(getResources().getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             }
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     if (firebaseAuth != null) {
 
                         if (firebaseAuth.getCurrentUser() != null) {
-                            firebaseAuth.getCurrentUser().getDisplayName();
+                            textView.setText(firebaseAuth.getCurrentUser().getDisplayName());
                         } else {
 
                             String emailAddress = "wade.fbi@gmail.com";
@@ -194,7 +194,8 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
 
                             textView.setText(R.string.please_login_label);
-                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Authentication failed.", Snackbar.LENGTH_LONG).setAction("OK", null).show();
+                            startActivity(new Intent(MainActivity.this, FirebaseUIActivity.class));
+                            //Snackbar.make(getActivity().findViewById(android.R.id.content), "Authentication failed.", Snackbar.LENGTH_LONG).setAction("OK", null).show();
                         }
 
                     });
