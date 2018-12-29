@@ -1,39 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="za.co.morristech.memo.app">
+    package="za.co.morristech.memo.app">
 
     <application>
 
+        <meta-data
+            android:name="asset_statements"
+            android:resource="@string/asset_statements" />
         <activity android:name="za.co.morristech.memo.app.MainActivity">
             <intent-filter android:order="1">
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            <intent-filter
-                android:autoVerify="true"
-                android:order="2">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data
-                    android:host="morristech.co.za"
-                    android:pathPattern="/.*"
-                    android:scheme="https"/>
-
-                <data
-                    android:host="morristech.co.za"
-                    android:pathPattern="/.*"
-                    android:scheme="http"/>
-
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="0a023b1a6502b7844820451d23b284f851338dbf"/>
+            android:value="0a023b1a6502b7844820451d23b284f851338dbf" />
 
     </application>
 

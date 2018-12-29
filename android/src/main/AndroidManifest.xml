@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="za.co.morristech.memo.android">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="za.co.morristech.memo.android">
 
     <application
         android:allowBackup="true"
@@ -18,9 +18,29 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="morristech.co.za" />
+            </intent-filter>
+            <intent-filter android:order="0">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="http"
+                    android:host="morristech.co.za" />
             </intent-filter>
         </activity>
 
@@ -30,7 +50,11 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="0a023b1a6502b7844820451d23b284f851338dbf"/>
+            android:value="0a023b1a6502b7844820451d23b284f851338dbf" />
+
+        <meta-data
+            android:name="asset_statements"
+            android:resource="@string/asset_statements" />
 
     </application>
 

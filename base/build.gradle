@@ -58,13 +58,13 @@ dependencies {
         force = true
     })
     //======================= Google Play Services Dependencies ======================
-    api 'com.google.android.gms:play-services-base:15.0.1'
-    api 'com.google.android.gms:play-services-auth:16.0.0'
+    api 'com.google.android.gms:play-services-base:16.0.1'
+    api 'com.google.android.gms:play-services-auth:16.0.1'
     //======================= Firebase Dependencies ======================
     api 'com.google.firebase:firebase-core:' + project.FIREBASE_CORE_VERSION
-    api 'com.google.firebase:firebase-auth:' + project.FIREBASE_CORE_VERSION
+    api 'com.google.firebase:firebase-auth:' + project.FIREBASE_AUTH_VERSION
     //======================= Thirparty Dependencies ======================
-    api ('com.crashlytics.sdk.android:crashlytics:2.9.5', {
+    api ('com.crashlytics.sdk.android:crashlytics:2.9.8', {
         transitive = true
     })
     //======================= Module Dependencies ======================

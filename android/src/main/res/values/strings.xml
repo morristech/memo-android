@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">Memo Android</string>
     <string name="tab_text_1">Tab 1</string>
@@ -48,5 +48,15 @@
 
     <string name="id_fmt">User ID: %s</string>
     <string name="email_fmt">Email: %s</string>
+
+    <string name="asset_statements" translatable="false" tools:ignore="ExtraTranslation">
+      [{
+        \"relation\": [\"delegate_permission/common.share_location\"],
+        \"target\": {
+          \"namespace\": \"web\",
+          \"site\": \"https://"https://morristech.co.za\"
+        }
+      }]
+    </string>
 
 </resources>

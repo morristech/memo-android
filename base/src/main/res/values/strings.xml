@@ -3,5 +3,6 @@
 
     <string name="app_name">Memo</string>
     <string name="filter_view_http_morristech" tools:ignore="ExtraTranslation">Intent filter label</string>
+    <string name="asset_statements" translatable="false">[{ \"include\": \"https://www.morristech.co.za/.well-known/assetlinks.json\" }]</string>
 
 </resources>
